@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const port = process.argv.slice(2)[0];
+const port = process.argv.slice(2)[0] || 8000;
 const app = express();
 app.use(bodyParser.json());
 
@@ -60,6 +60,7 @@ app.get('/powers', (req, res) => {
 });
 
 app.post('/hero/**', (req, res) => {
+  console.log(req);
   const heroId = parseInt(req.params[0]);
   const foundHero = heroes.find(subject => subject.id === heroId);
 
